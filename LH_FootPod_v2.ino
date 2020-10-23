@@ -78,7 +78,7 @@ void loop()
   if(digitalRead(LSM6DS3_int_1_PIN) == HIGH) //jeżeli LSM6DS3 zgłosi że ma pomiar
   {
     readRaw();  //odczytanie wartości raw
-    licznik_pomiarow++;
+/*    licznik_pomiarow++;
 
     //sumowanie rawX, rawY, rawZ
     rawX_srednia = rawX_srednia + rawX;    
@@ -103,7 +103,7 @@ void loop()
       rawX_srednia = 0;
       rawY_srednia = 0;
       rawZ_srednia = 0;
-      
+*/
       //obliczenie wartości przyspieszeń
       readAccel();
 
@@ -118,7 +118,7 @@ void loop()
       Serial.print(accel_ms2,4);
       Serial.print("\n");
       
-    }    
+    //}    
   }
     
 
@@ -196,7 +196,7 @@ void loop()
   //  Output data rate and power mode selection. Default value: 0000
   //  (0000: Power-down; 0001: 12.5 Hz; 0010: 26 Hz; 0011: 52 Hz; 0100: 104 Hz; 0101: 208 Hz;
   //   0110: 416 Hz; 0111: 833 Hz; 1000: 1.66 kHz; 1001: 3.33 kHz; 1010: 6.66 kHz
-  uint8_t ODR_XL = 0b0101;
+  uint8_t ODR_XL = 0b0100;
 
   //  Accelerometer full-scale selection. Default value: 00.
   //  (00: ±2 g; 01: ±16 g; 10: ±4 g; 11: ±8 g)
@@ -204,7 +204,7 @@ void loop()
 
   //Anti-aliasing filter bandwidth selection. Default value: 00
   //(00: 400 Hz; 01: 200 Hz; 10: 100 Hz; 11: 50 Hz)
-  uint8_t BW_XL = 0b00;
+  uint8_t BW_XL = 0b11;
   
   i2c.write(0x10, ODR_XL << 4 | FS_XL << 2 | BW_XL);
 
